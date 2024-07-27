@@ -1,11 +1,10 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
 
 function App() {
   // Define state variable for counter
-  const [counter, setCounter] = useState(15);
+  const [counter, setCounter] = useState(0);
 
   // Function to increment counter with limits
   const addValue = () => {
