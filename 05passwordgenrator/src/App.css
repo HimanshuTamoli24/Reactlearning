@@ -1,14 +1,17 @@
-/* App.css */
 body {
   @apply bg-gray-100 flex items-center justify-center min-h-screen;
 }
 
 input::placeholder {
-  @apply text-gray-400;
+  @apply text-gray-800;
+}
+
+input {
+  color: black;
 }
 
 button:hover {
-  @apply bg-teal-500;
+  @apply bg-blue-500;
 }
 
 button:focus {

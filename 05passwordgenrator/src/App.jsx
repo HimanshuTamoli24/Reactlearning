@@ -11,43 +11,42 @@ function App() {
   // Password generation function
   const passwordGenerator = useCallback(() => {
     let pass = "";
-    let str = "";
+    let str = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM";
     if (numberAllowed) str += "0123456789";
-    if (characterAllowed) str += "abcdefghijklmnopqrstuvwxyz";
+    if (characterAllowed) str += "!@#$%^&*";
     if (str.length === 0) return;
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 1; i < length; i++) {
       let charIndex = Math.floor(Math.random() * str.length);
       pass += str.charAt(charIndex);
     }
 
     setPassword(pass);
-  }, [length, numberAllowed, characterAllowed]);
+  }, [length, numberAllowed, characterAllowed, password]);
 
   // Copy password to clipboard
   const copyPasswordToClipboard = () => {
     if (passwordRef.current) {
       passwordRef.current.select();
-      document.execCommand("copy");
-      alert("Password copied to clipboard!");
+      window.navigator.clipboard.writeText();
     }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
+    <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-white">
       <h1 className="text-white text-center my-3">Password Generator</h1>
       <div className="flex shadow rounded-lg overflow-hidden mb-4">
         <input
           type="text"
           value={password}
-          className="outline-none w-full py-1 px-3"
+          className="outline-none w-full py-1 px-3 text-black"
           placeholder="Password"
           readOnly
           ref={passwordRef}
         />
         <button
           onClick={copyPasswordToClipboard}
-          className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0"
+          className="outline-none bg-blue-800 text-white px-3 py-0.5 shrink-0"
         >
           Copy
         </button>
@@ -85,7 +84,7 @@ function App() {
       </div>
       <button
         onClick={passwordGenerator}
-        className="mt-4 p-2 bg-green-600 text-white"
+        className="m-4 p-[4px]  rounded-md bg-blue-600 text-white"
       >
         Generate Password
       </button>
