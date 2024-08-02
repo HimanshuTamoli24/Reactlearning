@@ -1,21 +1,26 @@
 import React from "react";
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import About from "./screens/About";
 import "./App.css";
-import Card from "./components/card"; // Ensure the import matches the filename and export
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Userlis from "./screens/Userlis";
 
-let myobject1 = {
-  name: "arnav",
-  age: "19",
-};
+import Register from "./components/Register";
 
+const router = createBrowserRouter([
+  {
+    path: "/Register",
+    element: <Register/>
+  },
+  {
+    path: "/about",
+    element: <div>about us!</div>,
+  }
+]);
 function App() {
   return (
     <>
-      <Card channel=" chao code " test={myobject1} />
-      =
-
+      <h1>hello</h1>
+      <RouterProvider router={router} />
     </>
   );
 }
