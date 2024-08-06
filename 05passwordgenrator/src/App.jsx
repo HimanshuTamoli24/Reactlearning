@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -22,16 +22,19 @@ function App() {
     }
 
     setPassword(pass);
-  }, [length, numberAllowed, characterAllowed, password]);
+  }, [length, numberAllowed, characterAllowed]);
 
   // Copy password to clipboard
   const copyPasswordToClipboard = () => {
     if (passwordRef.current) {
       passwordRef.current.select();
-      window.navigator.clipboard.writeText();
+      document.execCommand("copy");
     }
   };
 
+  useEffect(() => {
+    passwordGenerator();
+  }, [length, numberAllowed, characterAllowed, passwordGenerator, setPassword]);
   return (
     <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-white">
       <h1 className="text-white text-center my-3">Password Generator</h1>

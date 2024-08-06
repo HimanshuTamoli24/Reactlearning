@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Header />
-      <Outlet /> {/* Renders matched child routes */}
+      <Outlet />
       <Footer />
     </div>
   );

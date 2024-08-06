@@ -12,6 +12,7 @@ import About from "./Components/About/About.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
 import "./index.css";
 import User from "./Components/User/User.jsx";
+import Github from "./Components/github/Github.jsx";
 // Define routes
 // const router = createBrowserRouter([
 //   {
@@ -36,10 +37,11 @@ import User from "./Components/User/User.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="/" element={<Home />} />
-      <Route path="/About" element={<About />} />
-      <Route path="/Contact" element={<Contact />} />
-      <Route path="/User/:id" element={<User />} />
+      <Route path="" element={<Home />} />
+      <Route path="About" element={<About />} />
+      <Route path="Contact" element={<Contact />} />
+      <Route path="User/:id" element={<User />} />
+      <Route path="github" element={<Github />} />
       <Route />
     </Route>
   )
