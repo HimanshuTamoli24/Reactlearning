@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import { TodoProvider } from "./context";
-import TodoForm from "./TodoForm"; // Import your TodoForm component
-import TodoItem from "./TodoItem"; // Import your TodoItem component
+import { useState, useEffect } from 'react';
+import { TodoProvider } from './contexts'; // Ensure path is correct
+import './App.css';
+import TodoForm from './components/TodoForm'; // Ensure path is correct
+import TodoItem from './components/TodoItem'; // Ensure path is correct
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -34,19 +32,24 @@ function App() {
   };
 
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    const storedTodos = localStorage.getItem('todos');
     if (storedTodos) {
-      setTodos(storedTodos);
+      try {
+        setTodos(JSON.parse(storedTodos));
+      } catch (e) {
+        console.error("Error parsing stored todos:", e);
+        setTodos([]); // Set to empty array in case of parse error
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
   return (
     <TodoProvider
-      value={{ todos, addTodo, deleteTodo, updateTodo, toggleComplete }}
+      value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}
     >
       <div className="bg-[#172842] min-h-screen py-8">
         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
@@ -58,7 +61,7 @@ function App() {
           </div>
           <div className="flex flex-wrap gap-y-3">
             {todos.map((todo) => (
-              <div className="w-full" key={todo.id}>
+              <div key={todo.id} className="w-full">
                 <TodoItem todo={todo} />
               </div>
             ))}
