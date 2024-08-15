@@ -1,32 +1,39 @@
-import { useState } from "react";
-
-import "./App.css";
-
+import React, { useState, useEffect } from "react";
+import App1 from "../App1";
 function App() {
-  // Define state variable for counter
-  const [counter, setCounter] = useState(0);
+  const [num, setNum] = useState(1);
+  const [action, setAction] = useState("");
 
-  // Function to increment counter with limits
-  const addValue = () => {
-    if (counter < 20) {
-      setCounter(counter + 1);
-    }
+  const onAddClick = () => {
+    setNum((prevNum) => prevNum + 1);
+    setAction("add");
   };
 
-  // Function to decrement counter with limits
-  const removeValue = () => {
-    if (counter > 0) {
-      setCounter(counter - 1);
-    }
+  const onRemoveclick = () => {
+    setNum((prevNum) => prevNum - 1);
+    setAction("remove");
   };
+
+  useEffect(() => {
+    if (action) {
+      if (action === "add") {
+        alert("You pressed the Add button");
+      } else if (action === "remove") {
+        alert("You pressed the Remove button");
+      }
+      setAction("");
+    }
+  }, [action]);
 
   return (
     <>
-      <h1>chai or code</h1>
-      <h1>counter value: {counter}</h1>
-      <button onClick={addValue}>Add Value</button>
-      <br />
-      <button onClick={removeValue}>Remove Value</button>
+      <div>
+        <h1> Himanshu Tamoli: {num} </h1>
+        <button onClick={onAddClick}>Add num</button>
+        {num !== 0 && <button onClick={onRemoveclick}>Remove num</button>}
+      </div>
+
+      <App1/>
     </>
   );
 }
