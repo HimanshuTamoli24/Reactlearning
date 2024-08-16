@@ -1,0 +1,11 @@
+1. Create `context/context.js`
+
+- Task: Create a context using `createContext` and export it as `userContext`.
+
+2. Modify `App.jsx`
+
+- Task: Import `userContext`, and wrap all content inside `<userContext.Provider value={counter}>`.
+
+3. Use `useContext` in a Component
+
+- Task: Import `useContext` and `userContext`. Create a variable `count` using `useContext(userContext)`. Use `count` as needed.
