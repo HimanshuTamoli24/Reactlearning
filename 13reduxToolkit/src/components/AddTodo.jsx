@@ -9,7 +9,7 @@ function AddTodo() {
   const addTodoHandler = (e) => {
     e.preventDefault();
     if (input.trim()) {
-      dispatch(addTodo({ text: input })); // Ensure the dispatched payload matches the expected shape
+      dispatch(addTodo({ text: input })); 
       setInput('');
     }
   };
