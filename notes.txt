@@ -1,3 +1,7 @@
+
+
+createContext
+
 1. Create `context/context.js`
 
 - Task: Create a context using `createContext` and export it as `userContext`.
@@ -9,3 +13,38 @@
 3. Use `useContext` in a Component
 
 - Task: Import `useContext` and `userContext`. Create a variable `count` using `useContext(userContext)`. Use `count` as needed.
+
+
+
+
+
+
+
+
+
+
+
+//reduxjs/tookikit
+
+1. create configure store
+ import {configurestore} from 'reduxjs/tookikit'
+const store = configurestore({
+    reducers:{
+
+    }
+})
+
+
+
+2. create auth slice
+import {createSlice} from 'reduxjs/tookikit '
+const auth = createSlice({
+   const intialState={
+// write inital condition 
+    }
+
+
+    name:'auth',
+    intialState
+    reducers:{}
+})

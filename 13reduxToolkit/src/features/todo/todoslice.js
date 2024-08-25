@@ -11,7 +11,7 @@ const initialState = {
 
 export const todoSlice = createSlice({
   name: "todo",
-  initialState, // Fixed typo here
+  initialState, 
   reducers: {
     addTodo: (state, action) => {
       const todo = {
@@ -27,7 +27,7 @@ export const todoSlice = createSlice({
       const { id, text } = action.payload;
       const todo = state.todos.find((todo) => todo.id === id);
       if (todo) {
-        todo.text = text; // Update the text of the todo
+        todo.text = text; 
       }
     },
   },
