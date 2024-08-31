@@ -1,0 +1,6 @@
+.custom-line-through {
+  text-decoration: line-through;
+  text-decoration: line-through;
+  text-decoration-color: red; /* Custom color */
+  text-decoration-thickness: 2px; /* Custom thickness */
+}

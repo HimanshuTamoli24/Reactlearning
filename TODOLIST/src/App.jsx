@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Todo from "./Todo/todo";
 
 function App() {
   return (
-    <div>App</div>
-  )
+    <>
+      <div>
+        <Todo />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
