@@ -2,7 +2,7 @@ import React from "react";
 import { FaCopy } from "react-icons/fa";
 
 const PasswordHistory = ({ copiedPassword, onCopy }) => (
-  <div className="max-w-sm shadow-lime-100 shadow-md m-auto mb-6 max-h-full mt-10 border rounded-xl w-full p-4">
+  <div className="max-w-sm shadow-lime-100 shadow-md m-auto mb-6 max-h-full mt-10 border rounded-xl w-full p-4 bg-slate-950">
     <h1 className="text-center m-4 bg-cyan-500/65 font-medium border rounded-lg p-2 border-blue-300 shadow-sm shadow-white text-xl">
       Last Copied Passwords History
     </h1>
@@ -11,7 +11,7 @@ const PasswordHistory = ({ copiedPassword, onCopy }) => (
         {copiedPassword.map((pass, index) => (
           <div className="flex items-center" key={index}>
             <li className="text-left m-2 w-full overflow-hidden font-semibold border rounded-lg p-2 border-blue-300 shadow-sm shadow-white text-neutral-50 text-xl h-12 flex items-center scrollbar-hide">
-              <span className="m-2 p-1">{index + 1}.</span>{pass}
+              {pass}
             </li>
             <button
               onClick={() => onCopy(pass)}

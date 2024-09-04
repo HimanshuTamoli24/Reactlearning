@@ -59,7 +59,7 @@ function App() {
   };
 
   return (
-    <div className="w-full h-screen flex justify-start flex-col items-center bg-slate-950">
+    <div className="w-full h-screen  flex justify-start flex-col items-center bg-slate-950">
       <div className="max-w-lg shadow-lime-100/ shadow-2xl mt-28 max-h-full border rounded-xl w-full justify-center items-center">
         <h1 className="text-center m-10 text-4xl text-neutral-50">
           Password Generator
