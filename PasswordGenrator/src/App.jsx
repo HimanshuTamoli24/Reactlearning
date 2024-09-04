@@ -78,11 +78,12 @@ function App() {
           setCharacterAllowed={setCharacterAllowed}
           onGenerate={passwordGenerator}
         />
-        <PasswordHistory
+       
+      </div>
+      <PasswordHistory
           copiedPassword={copiedPassword}
           onCopy={copyPasswordToClipboard}
         />
-      </div>
     </div>
   );
 }
