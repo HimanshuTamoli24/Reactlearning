@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import PasswordInput from "./password/PasswordInput";
 import PasswordControls from "./password/PasswordControls";
 import PasswordHistory from "./password/PasswordHistory";
@@ -23,23 +23,37 @@ function App() {
     setPassword(pass);
   }, [length, numberAllowed, characterAllowed]);
 
-  const copyPasswordToClipboard = (passwordToCopy) => {
-    if (passwordRef.current) {
-      // Select the text in the input field
-      passwordRef.current.select();
+  useEffect(() => {
+    // Generate initial password
+    passwordGenerator();
+  }, [passwordGenerator]);
 
-      // Copy the selected text to the clipboard
-      navigator.clipboard.writeText(passwordToCopy)
-        .then(() => {
-          setCopiedPassword((prev) => {
-            const copied = [passwordToCopy, ...prev];
-            const unique = Array.from(new Set(copied));
-            return unique.slice(0, 10);
+  useEffect(() => {
+    // Update password when length or settings change
+    passwordGenerator();
+  }, [length, numberAllowed, characterAllowed, passwordGenerator]);
+
+  const copyPasswordToClipboard = (passwordToCopy) => {
+    if (passwordToCopy) {
+      if (passwordRef.current) {
+        // Select the text in the input field
+        passwordRef.current.select();
+
+        // Copy the selected text to the clipboard
+        navigator.clipboard.writeText(passwordToCopy)
+          .then(() => {
+            setCopiedPassword((prev) => {
+              const copied = [passwordToCopy, ...prev];
+              const unique = Array.from(new Set(copied));
+              return unique.slice(0, 10);
+            });
+          })
+          .catch((error) => {
+            console.error('Failed to copy text: ', error);
           });
-        })
-        .catch((error) => {
-          console.error('Failed to copy text: ', error);
-        });
+      }
+    } else {
+      console.log("No password to copy");
     }
   };
 
