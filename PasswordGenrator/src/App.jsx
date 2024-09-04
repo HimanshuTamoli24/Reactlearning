@@ -34,6 +34,7 @@ function App() {
   }, [length, numberAllowed, characterAllowed, passwordGenerator]);
 
   const copyPasswordToClipboard = (passwordToCopy) => {
+    passwordToCopy == passwordRef.current ? passwordRef.current.select() : null
     if (passwordToCopy) {
       if (passwordRef.current) {
         // Select the text in the input field
