@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputBox from "./components/InputBox"; // Ensure this path matches the actual file location
+import InputBox from "./components/InputBox";
 import useCurrencyInfo from "./hooks/useCurrencyInfo";
 import "./App.css";
 
@@ -20,7 +20,7 @@ function App() {
   };
 
   const convert = () => {
-    if (!currencyInfo[to]) return; // Check if currencyInfo[to] is valid
+    if (!currencyInfo[to]) return;
     const result = amount * currencyInfo[to];
     setConvertedAmount(result.toFixed(2));
   };
@@ -59,7 +59,7 @@ function App() {
             <div className="relative w-full h-0.5">
               <button
                 type="button"
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-b-2 border-white rounded-md bg-indigo-800 active:bg-indigo-800/90 text-white px-2 py-0.5"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2  m-1 border-b-2 border-white rounded-md bg-indigo-800 active:bg-indigo-800/90 text-white px-2 py-0.5"
                 onClick={swap}
               >
                 Swap
@@ -84,6 +84,7 @@ function App() {
           </form>
         </div>
       </div>
+
     </div>
   );
 }

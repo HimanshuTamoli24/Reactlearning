@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
 import PasswordInput from "./password/PasswordInput";
 import PasswordControls from "./password/PasswordControls";
-import PasswordHistory from "./password/PasswordHistory";
+import PasswordHistory from "./Password/PasswordHistory";
 
 function App() {
   const [length, setLength] = useState(8);
@@ -9,6 +9,8 @@ function App() {
   const [characterAllowed, setCharacterAllowed] = useState(false);
   const [password, setPassword] = useState("");
   const [copiedPassword, setCopiedPassword] = useState([]);
+  const [highlightedIndex, setHighlightedIndex] = useState(null);
+
   const passwordRef = useRef(null);
 
   const passwordGenerator = useCallback(() => {
@@ -24,17 +26,11 @@ function App() {
   }, [length, numberAllowed, characterAllowed]);
 
   useEffect(() => {
-    // Generate initial password
-    passwordGenerator();
-  }, [passwordGenerator]);
-
-  useEffect(() => {
     // Update password when length or settings change
     passwordGenerator();
   }, [length, numberAllowed, characterAllowed, passwordGenerator]);
 
   const copyPasswordToClipboard = (passwordToCopy) => {
-    passwordToCopy == passwordRef.current ? passwordRef.current.select() : null
     if (passwordToCopy) {
       if (passwordRef.current) {
         // Select the text in the input field
@@ -58,8 +54,18 @@ function App() {
     }
   };
 
+  const onClickbgChange = (pass, index) => {
+    copyPasswordToClipboard(pass);
+
+    setHighlightedIndex(index);
+
+    setTimeout(() => {
+      setHighlightedIndex(null);
+    }, 1000);
+  };
+
   return (
-    <div className="w-full h-screen  flex justify-start flex-col items-center bg-slate-950">
+    <div className="w-full h-screen flex justify-start flex-col items-center bg-slate-950">
       <div className="max-w-lg shadow-lime-100/ shadow-2xl mt-28 max-h-full border rounded-xl w-full justify-center items-center">
         <h1 className="text-center m-10 text-4xl text-neutral-50">
           Password Generator
@@ -78,11 +84,12 @@ function App() {
           setCharacterAllowed={setCharacterAllowed}
           onGenerate={passwordGenerator}
         />
-
       </div>
       <PasswordHistory
         copiedPassword={copiedPassword}
         onCopy={copyPasswordToClipboard}
+        onClickbgChange={onClickbgChange}
+        highlightedIndex={highlightedIndex}
       />
     </div>
   );
