@@ -8,8 +8,8 @@ function Currencyconverter() {
     const fetchCurrency = async () => {
         try {
             const res = await fetch(" https://api.frankfurter.app/currencies");
-            const data = res.json();
-            setCurrency(data);
+            const data =  await res.json();
+            setCurrency(Object.keys (data));
         } catch (error) {
             console.error(error);
         }
