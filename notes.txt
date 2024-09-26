@@ -2,7 +2,7 @@
 
 createContext
 
-1. Create `context/context.js`
+1. Create `context/UserContext.js`
 
 - Task: Create a context using `createContext` and export it as `userContext`.
 

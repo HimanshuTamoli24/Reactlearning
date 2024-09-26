@@ -7,6 +7,8 @@ function CurrencyForm() {
     const [to, setTo] = useState('INR'); // State for "to" currency
     const [rotate, setRotate] = useState(''); // State for rotation class
     const [amount, setAmount] = useState('100'); // State for amount
+    const [result, setResult] = useState(''); // State for result
+    const [error, setError] = useState(''); // State for error messages
 
     // Swap currencies and toggle rotation
     const handleSwap = () => {
@@ -28,12 +30,15 @@ function CurrencyForm() {
 
         try {
             const response = await fetch(API);
-            if (!response.ok) throw new Error('Something went wrong');
+            if (!response.ok) throw new Error('Failed to fetch data');
             const data = await response.json();
             const rate = (data.conversion_rate * amount).toFixed(2); // Calculate rate
-            console.log(data); // Log response
+            setResult(`${amount} ${from} = ${rate} ${to}`);
+            setError(''); // Clear any previous errors
         } catch (error) {
             console.error("Unable to fetch data", error);
+            setError('Unable to fetch data. Please try again later.');
+            setResult(''); // Clear previous results
         }
     };
 
@@ -71,7 +76,17 @@ function CurrencyForm() {
                 Get Exchange Rate
             </button>
 
-            <p className="text-white bg-slate-200/10 rounded-sm text-xl p-1 pl-5 pr-5">1 USD = 83 INR</p>
+            {result && (
+                <p className="text-white bg-slate-200/10 rounded-sm text-xl p-1 pl-5 pr-5">
+                    {result}
+                </p>
+            )}
+
+            {error && (
+                <p className="text-red-500 text-xl p-1 pl-5 pr-5">
+                    {error}
+                </p>
+            )}
         </form>
     );
 }
